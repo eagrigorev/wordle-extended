@@ -1,0 +1,33 @@
+{
+  "name": "wordle-clone-prototype",
+  "version": "1.0.0",
+  "description": "Wordle clone, but with a slightly bigger field",
+  "main": "public/app.js",
+  "scripts": {
+    "build": "rm -rf public/scripts && tsc",
+    "build:dev": "rm -rf public/scripts && tsc -p tsconfig-dev.json",
+    "start": "http-server -p 3000",
+    "lint": "eslint src --ext .js --ext .ts",
+    "lint-fix": "eslint src --ext .js --ext .ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eagrigorev/wordle-clone-prototype.git"
+  },
+  "author": "Evgenii Grigorev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eagrigorev/wordle-clone-prototype/issues"
+  },
+  "homepage": "https://github.com/eagrigorev/wordle-clone-prototype#readme",
+  "dependencies": {
+    "g": "^2.0.1",
+    "npm": "^8.5.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "eslint": "^8.10.0",
+    "typescript": "^4.6.2"
+  }
+}
