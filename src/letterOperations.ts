@@ -34,22 +34,32 @@ export const deleteLetter = (): void => {
 export const checkWordle = (): void => {
   if (tile > 5) {
     const userWordle: string = ROWS[row].join('');
-    flipColorsAnimation();
-    console.log(`User word is ${userWordle} and the correct word is ${wordle}`);
-    if (userWordle === wordle) {
-      displayMessage('Correct!');
-      gameOver = true;
-      return;
-    } else {
-      if (row >= 6) {
-        displayMessage('Game Over');
-        gameOver = true;
-        return;
-      }
-      if (row < 6) {
-        row++;
-        tile = 0;
-      }
-    }
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userWordle}`)
+      .then((response) => {
+        if (response.status == 404) {
+          displayMessage('Word not found');
+          return;
+        } else {
+          flipColorsAnimation();
+          if (userWordle === wordle) {
+            displayMessage('Correct!');
+            gameOver = true;
+            return;
+          } else {
+            if (row >= 6) {
+              displayMessage('Game Over');
+              gameOver = true;
+              return;
+            }
+            if (row < 6) {
+              row++;
+              tile = 0;
+            }
+          }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 };
