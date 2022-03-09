@@ -22,9 +22,6 @@ app.get('/words', (req: Express.Request, res: Express.Response) => {
       'x-rapidapi-key': process.env.RAPID_API_KEY
     }
   };
-
-  
-
   axios.request(options)
     .then((response) => {
       console.log(response.data);
