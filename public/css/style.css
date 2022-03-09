@@ -73,19 +73,9 @@ body {
   margin: 2px;
 }
 
-.game-container__tile_grey {
-  background-color: #3a3a3c !important;
-  border: none !important;
-}
-
-.game-container__tile_yellow {
-  background-color: #b59f3a !important;
-  border: none !important;
-}
-
-.game-container__tile_green {
-  background-color: #538d4e !important;
-  border: none !important;
+.game-container__tile_flip-animation {
+  -webkit-animation: 0.5s linear flipping;
+          animation: 0.5s linear flipping;
 }
 
 .game-container__keyboard {
@@ -111,9 +101,19 @@ body {
   width: 70px;
 }
 
-.tile.flip {
-  -webkit-animation: 0.5s linear flipping;
-          animation: 0.5s linear flipping;
+.color_grey {
+  background-color: #3a3a3c !important;
+  border: none !important;
+}
+
+.color_yellow {
+  background-color: #b59f3a !important;
+  border: none !important;
+}
+
+.color_green {
+  background-color: #538d4e !important;
+  border: none !important;
 }
 
 @-webkit-keyframes flipping {
