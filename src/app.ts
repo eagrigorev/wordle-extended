@@ -1,8 +1,7 @@
-import { KEYS, ROWS, WORDLE } from './const.js';
-
-const field = document.querySelector('.game-container__field');
-const keyboard = document.querySelector('.game-container__keyboard');
-const message = document.querySelector('.game-container__message');
+import { KEYS, ROWS, WORDLE, field, keyboard } from './const.js';
+import { Letter } from './types.js';
+import { keyboardColors } from './keyboardColors.js';
+import { displayMessage } from './displayMessage.js';
 
 let row = 0;
 let tile = 0;
@@ -33,16 +32,17 @@ KEYS.forEach((key: string) => {
 });
 
 const handleClick = (key: string): void => {
-  console.log(`Clicked ${key}`);
-  if (key === 'DELETE') {
-    deleteLetter();
-    return;
+  if (!gameOver) {
+    if (key === 'DELETE') {
+      deleteLetter();
+      return;
+    }
+    if (key === 'ENTER') {
+      checkWordle();
+      return;
+    }
+    addLetter(key);
   }
-  if (key === 'ENTER') {
-    checkWordle();
-    return;
-  }
-  addLetter(key);
 };
 
 const addLetter = (key: string): void => {
@@ -93,34 +93,38 @@ const checkWordle = (): void => {
   }
 };
 
-const displayMessage = (msg: string): void => {
-  const messageBody = document.createElement('p');
-  messageBody.textContent = msg;
-  if (message != null) {
-    message.append(messageBody);
-    setTimeout((): void => {
-      message.removeChild(messageBody);
-    }, 3000);
-  }
-};
-
 const flipColorsAnimation = (): void => {
   const parentRow = document.querySelector(`#row-${row}`);
+  let wordleCheck = WORDLE;
+  const userWordle: Letter[] = [];
   if (parentRow != null) {
     const tiles = Object.values(parentRow.childNodes) as HTMLElement[];
-    tiles.forEach((tile, index: number) => {
+    tiles.forEach((tile: HTMLElement, index: number) => {
       const tileData = tile.getAttribute('data');
-      if (tileData == WORDLE[index]) {
-        tile.classList.remove('game-container__tile');
-        tile.classList.add('game-container__tile_green');
-      } else {
-        if (WORDLE.includes(tileData)) {
-          tile.classList.remove('game-container__tile');
-          tile.classList.add('game-container__tile_yellow');
-        } else {
-          tile.classList.remove('game-container__tile');
-          tile.classList.add('game-container__tile_grey');
-        }
+      if (tileData != null) {
+        userWordle.push(
+          {
+            key: tileData,
+            color: 'color_grey'
+          }
+        );
+        userWordle.forEach((letter: Letter, index: number) => {
+          if (letter.key == WORDLE[index]) {
+            letter.color = 'color_green';
+            wordleCheck = wordleCheck.replace(letter.key, '');
+          }
+        });
+        userWordle.forEach((letter) => {
+          if (wordleCheck.includes(letter.key)) {
+            letter.color = 'color_yellow';
+            wordleCheck = wordleCheck.replace(letter.key, '');
+          }
+        }); 
+        setTimeout((): void => {
+          tile.classList.add('game-container__tile_flip-animation');
+          tile.classList.add(userWordle[index].color);
+          keyboardColors(userWordle[index].key, userWordle[index].color);
+        }, 300 * index);
       }
     });
   }

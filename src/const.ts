@@ -40,3 +40,7 @@ export const ROWS: string[][] = [
 ];
 
 export const WORDLE = 'EUROPE';
+
+export const field = document.querySelector('.game-container__field');
+export const keyboard = document.querySelector('.game-container__keyboard');
+export const MESSAGE = document.querySelector('.game-container__message');
