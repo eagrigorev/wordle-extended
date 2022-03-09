@@ -1,11 +1,11 @@
 import { Letter } from './types.js';
-import { WORDLE } from './const.js';
+import { wordle } from './getWordle.js';
 import { keyboardColors } from './keyboardColors.js';
 import { row } from './letterOperations.js';
 
 export const flipColorsAnimation = (): void => {
   const parentRow = document.querySelector(`#row-${row}`);
-  let wordleCheck = WORDLE;
+  let wordleCheck = wordle;
   const userWordle: Letter[] = [];
   if (parentRow != null) {
     const tiles = Object.values(parentRow.childNodes) as HTMLElement[];
@@ -19,7 +19,7 @@ export const flipColorsAnimation = (): void => {
           }
         );
         userWordle.forEach((letter: Letter, index: number) => {
-          if (letter.key == WORDLE[index]) {
+          if (letter.key == wordle[index]) {
             letter.color = 'color_green';
             wordleCheck = wordleCheck.replace(letter.key, '');
           }

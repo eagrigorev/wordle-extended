@@ -39,8 +39,6 @@ export const ROWS: string[][] = [
   ['', '', '', '', '', ''],
 ];
 
-export const WORDLE = 'SWEDEN';
-
 export const FIELD = document.querySelector('.game-container__field');
 export const KEYBOARD = document.querySelector('.game-container__keyboard');
 export const MESSAGE = document.querySelector('.game-container__message');
