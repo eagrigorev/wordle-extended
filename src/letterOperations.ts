@@ -1,6 +1,7 @@
-import { ROWS, WORDLE } from './const.js';
+import { ROWS } from './const.js';
 import { flipColorsAnimation } from './flipColorsAnimation.js';
 import { displayMessage } from './displayMessage.js';
+import { wordle } from './getWordle.js';
 
 export let row = 0;
 let tile = 0;
@@ -34,8 +35,8 @@ export const checkWordle = (): void => {
   if (tile > 5) {
     const userWordle: string = ROWS[row].join('');
     flipColorsAnimation();
-    console.log(`User word is ${userWordle} and the correct word is ${WORDLE}`);
-    if (userWordle === WORDLE) {
+    console.log(`User word is ${userWordle} and the correct word is ${wordle}`);
+    if (userWordle === wordle) {
       displayMessage('Correct!');
       gameOver = true;
       return;

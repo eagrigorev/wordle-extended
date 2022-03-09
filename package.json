@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rd -r public\\scripts 2>null & tsc",
     "build:dev": "rd -r public\\scripts 2>null & tsc -p tsconfig-dev.json",
-    "start:backend": "nodemon public/server.js",
+    "start:backend": "nodemon public\\scripts\\server.js",
     "lint": "eslint src --ext .js --ext .ts",
     "lint-fix": "eslint src --ext .js --ext .ts --fix"
   },
@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^0.26.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "g": "^2.0.1",
     "nodemon": "^2.0.15",

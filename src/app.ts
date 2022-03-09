@@ -1,6 +1,9 @@
 import { KEYS, ROWS, FIELD, KEYBOARD } from './const.js';
 import { addLetter, deleteLetter, checkWordle } from './letterOperations.js';
 import { gameOver } from './letterOperations.js';
+import { getWordle } from './getWordle.js';
+
+getWordle();
 
 ROWS.forEach((row: string[], rowIndex: number) => {
   const rowElement = document.createElement('div');
