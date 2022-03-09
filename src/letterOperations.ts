@@ -1,7 +1,10 @@
 import { ROWS, WORDLE } from './const.js';
+import { flipColorsAnimation } from './flipColorsAnimation.js';
+import { displayMessage } from './displayMessage.js';
 
-let row = 0;
+export let row = 0;
 let tile = 0;
+export let gameOver = false;
 
 export const addLetter = (key: string): void => {
   if (row < 7 && tile < 6) {
@@ -11,7 +14,6 @@ export const addLetter = (key: string): void => {
       currentTile.setAttribute('data', key);
       ROWS[row][tile] = key;
       tile++;
-      console.log(ROWS);
     }
   }
 };

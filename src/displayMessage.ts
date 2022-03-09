@@ -6,7 +6,9 @@ export const displayMessage = (msg: string): void => {
   if (MESSAGE != null) {
     MESSAGE.append(messageBody);
     setTimeout((): void => {
-      MESSAGE.removeChild(messageBody);
+      if (MESSAGE != null) {
+        MESSAGE.removeChild(messageBody);
+      }
     }, 3000);
   }
 };
