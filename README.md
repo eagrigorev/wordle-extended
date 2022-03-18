@@ -1,4 +1,4 @@
-## Bigger Wordle Clone
+## Wordle Extended
 
 ### Running the App
 
